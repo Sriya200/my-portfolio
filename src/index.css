@@ -1,0 +1,38 @@
+/* ===== GLOBAL RESET ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;          /* ⬅ FIX white bleed */
+  overflow-x: hidden;        /* ⬅ FIX horizontal overflow */
+}
+
+/* Enable snap ONLY on home page */
+body.snap-enabled {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+/* Each section = one full page */
+.snap-section {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  display: flex;
+  background: #000;          /* ⬅ ensure full black */
+}
+
+
+/* Remove ALL external spacing */
+section {
+  margin: 0;
+}
