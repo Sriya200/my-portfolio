@@ -17,12 +17,10 @@ const useStyles = createUseStyles({
     color: "#fff",
     overflow: "hidden",
 
-    /* Desktop snap-safe height */
     "@media (min-width: 901px)": {
       minHeight: "100vh",
     },
 
-    /* Mobile layout */
     "@media (max-width: 900px)": {
       gridTemplateColumns: "1fr",
       padding: "96px 20px 72px",
@@ -31,7 +29,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  /* LEFT CONTENT */
+  /* LEFT */
   left: {
     maxWidth: 760,
 
@@ -48,8 +46,9 @@ const useStyles = createUseStyles({
     lineHeight: 1,
     margin: 0,
     color: "#fff",
-    opacity: 0,
-    transform: "translateY(-30px)",
+
+    /* 🔥 animation lives HERE */
+    animation: "$titleIn 1.2s cubic-bezier(.16,.84,.26,1) forwards",
 
     "@media (max-width: 900px)": {
       fontSize: "clamp(36px, 10vw, 56px)",
@@ -62,8 +61,8 @@ const useStyles = createUseStyles({
     fontSize: "clamp(16px, 1.6vw, 20px)",
     lineHeight: 1.7,
     color: "#8d8981",
-    opacity: 0,
-    transform: "translateY(12px)",
+
+    animation: "$copyIn 1s ease-out 0.18s forwards",
 
     "@media (max-width: 900px)": {
       marginTop: 18,
@@ -76,9 +75,9 @@ const useStyles = createUseStyles({
     height: 2,
     background: "rgba(255,255,255,0.85)",
     marginTop: 28,
-    opacity: 0,
-    transform: "scaleX(0)",
     transformOrigin: "left center",
+
+    animation: "$underlineIn 0.9s ease-out 0.38s forwards",
 
     "@media (max-width: 900px)": {
       marginLeft: "auto",
@@ -86,7 +85,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  /* RIGHT CTA */
+  /* RIGHT */
   right: {
     display: "flex",
     alignItems: "center",
@@ -109,7 +108,6 @@ const useStyles = createUseStyles({
     textDecoration: "none",
 
     boxShadow: "0 12px 30px rgba(176,138,99,0.35)",
-    transform: "translateY(0)",
     transition: "all 0.35s cubic-bezier(.22,.61,.36,1)",
 
     "&:hover": {
@@ -127,7 +125,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  /* ANIMATIONS */
+  /* KEYFRAMES */
   "@keyframes titleIn": {
     "0%": { opacity: 0, transform: "translateY(-30px)" },
     "100%": { opacity: 1, transform: "translateY(0)" },
@@ -143,17 +141,10 @@ const useStyles = createUseStyles({
     "100%": { opacity: 1, transform: "scaleX(1)" },
   },
 
-  /* VISIBILITY CLASSES */
-  titleVisible: {
-    animation: "$titleIn 1.2s cubic-bezier(.16,.84,.26,1) forwards",
-  },
-
-  introVisible: {
-    animation: "$copyIn 1s ease-out 0.16s forwards",
-  },
-
-  underlineVisible: {
-    animation: "$underlineIn 0.9s ease-out 0.38s forwards",
+  "@media (prefers-reduced-motion: reduce)": {
+    title: { animation: "none", opacity: 1, transform: "none" },
+    intro: { animation: "none", opacity: 1, transform: "none" },
+    underline: { animation: "none", opacity: 1, transform: "none" },
   },
 });
 

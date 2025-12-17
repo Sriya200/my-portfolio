@@ -4,7 +4,7 @@ import useStyles from "../components/About/about.style";
 export default function About() {
   const s = useStyles();
   const rootRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [playKey, setPlayKey] = useState(0);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -13,10 +13,11 @@ export default function About() {
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          // 🔥 FORCE REMOUNT → animation ALWAYS runs
+          setPlayKey((k) => k + 1);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     io.observe(el);
@@ -25,15 +26,15 @@ export default function About() {
 
   return (
     <section className={s.about} ref={rootRef} id="about">
-      {/* LEFT CONTENT */}
       <div className={s.left}>
-        <h1 className={`${s.title} ${visible ? s.titleVisible : ""}`}>
+        {/* 🔑 key forces remount */}
+        <h1 key={`title-${playKey}`} className={s.title}>
           Who is
           <br />
           Sriyanka?
         </h1>
 
-        <p className={`${s.intro} ${visible ? s.introVisible : ""}`}>
+        <p key={`intro-${playKey}`} className={s.intro}>
           I&apos;m a Data Analyst and recent Information Science graduate with strong
           proficiency in SQL, Python, Excel, Tableau, and Power BI. Skilled at
           transforming complex datasets into clear, actionable insights that drive
@@ -42,10 +43,9 @@ export default function About() {
           trends to support data-driven business strategies.
         </p>
 
-        <div className={`${s.underline} ${visible ? s.underlineVisible : ""}`} />
+        <div key={`underline-${playKey}`} className={s.underline} />
       </div>
 
-      {/* RIGHT SIDE CTA */}
       <div className={s.right}>
         <a
           href="/resume.pdf"
