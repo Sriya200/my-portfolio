@@ -1,33 +1,36 @@
+// src/components/Projects/projects.style.js
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   projects: {
-  height: "100%",              // 🔴 must match snap-section
-  width: "100%",
-  maxWidth: 1200,
-  margin: "0 auto",
-  boxSizing: "border-box",     // 🔴 REQUIRED
+    minHeight: "100vh",          // ✅ snap-safe
+    width: "100%",
+    maxWidth: 1200,
+    margin: "0 auto",
+    boxSizing: "border-box",
 
-  background: "#000",
-  color: "#fff",
+    background: "#000",
+    color: "#fff",
 
-  padding: "96px 48px",
-  display: "flex",
-  flexDirection: "column",
-  gap: 48,
+    padding: "72px 48px",        // ✅ balanced padding
+    display: "flex",
+    flexDirection: "column",
+    gap: 40,
 
-  overflow: "hidden",          // 🔴 prevents bleed to next section
+    overflow: "hidden",
 
-  "@media (max-width: 900px)": {
-    padding: "72px 20px",
+    "@media (max-width: 900px)": {
+      padding: "56px 20px",
+      gap: 32,
+    },
   },
-},
 
   title: {
     fontFamily: "'Playfair Display', Georgia, serif",
     fontWeight: 300,
-    fontSize: "clamp(40px, 6vw, 96px)",
+    fontSize: "clamp(36px, 7vw, 84px)",
     margin: 0,
+    lineHeight: 1.05,
   },
 
   tiles: {
@@ -35,24 +38,27 @@ const useStyles = createUseStyles({
     gridTemplateColumns: "repeat(3, 1fr)",
     gap: 24,
 
-    "@media (max-width: 1000px)": {
+    "@media (max-width: 1100px)": {
       gridTemplateColumns: "repeat(2, 1fr)",
     },
+
     "@media (max-width: 700px)": {
       gridTemplateColumns: "1fr",
+      gap: 20,
     },
   },
 
   tile: {
     opacity: 0,
-    transform: "translateY(16px)",
-    transition: "all 420ms cubic-bezier(.16,.84,.26,1)",
-    borderRadius: 12,
+    transform: "translateY(14px)",
+    transition: "opacity 420ms cubic-bezier(.16,.84,.26,1), transform 420ms cubic-bezier(.16,.84,.26,1)",
+    borderRadius: 14,
     padding: 16,
+    background: "rgba(255,255,255,0.02)",
 
     "&:hover": {
       transform: "translateY(-6px)",
-      boxShadow: "0 16px 40px rgba(0,0,0,0.6)",
+      boxShadow: "0 18px 42px rgba(0,0,0,0.55)",
     },
   },
 
@@ -70,19 +76,24 @@ const useStyles = createUseStyles({
   },
 
   logoWrap: {
-    width: 96,
-    height: 96,
-    borderRadius: 12,
+    width: 88,
+    height: 88,
+    borderRadius: 14,
     background: "rgba(255,255,255,0.05)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
+
+    "@media (max-width: 700px)": {
+      width: 72,
+      height: 72,
+    },
   },
 
   logoImg: {
-    width: "70%",
-    height: "70%",
+    width: "68%",
+    height: "68%",
     objectFit: "contain",
   },
 
@@ -94,12 +105,23 @@ const useStyles = createUseStyles({
 
   arrowIcon: {
     fontSize: 18,
-    opacity: 0.9,
+    opacity: 0.85,
+    marginTop: 2,
   },
 
   short: {
     fontWeight: 600,
     fontSize: 15,
+    lineHeight: 1.4,
+  },
+
+  /* accessibility */
+  "@media (prefers-reduced-motion: reduce)": {
+    tile: {
+      transition: "none",
+      transform: "none",
+      opacity: 1,
+    },
   },
 });
 

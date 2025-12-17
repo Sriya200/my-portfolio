@@ -1,116 +1,160 @@
-// src/components/About/about.style.js
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from "react-jss";
 
-const useStyles = createUseStyles((theme) => ({
-about: {
-  height: "100%",
-  width: "100%",
-  maxWidth: 1200,
-  margin: "0 auto",
-  boxSizing: "border-box",
-  
-  display: "flex",
-  alignItems: "center",
-  padding: '36px',
+const useStyles = createUseStyles({
+  about: {
+    width: "100%",
+    maxWidth: 1200,
+    margin: "0 auto",
+    boxSizing: "border-box",
 
-  background: "#000",
-  color: "#fff",
+    display: "grid",
+    gridTemplateColumns: "1fr 360px",
+    alignItems: "center",
+    gap: 48,
 
-  overflow: "hidden",
+    padding: "72px 48px",
+    background: "#000",
+    color: "#fff",
+    overflow: "hidden",
 
-  "@media (max-width: 900px)": {
-    padding: "20px",
+    /* Desktop snap-safe height */
+    "@media (min-width: 901px)": {
+      minHeight: "100vh",
+    },
+
+    /* Mobile layout */
+    "@media (max-width: 900px)": {
+      gridTemplateColumns: "1fr",
+      padding: "96px 20px 72px",
+      gap: 40,
+      minHeight: "auto",
+    },
   },
-},
+
+  /* LEFT CONTENT */
   left: {
-    maxWidth: 860,
+    maxWidth: 760,
+
+    "@media (max-width: 900px)": {
+      maxWidth: "100%",
+      textAlign: "center",
+    },
   },
 
   title: {
     fontFamily: "'Playfair Display', Georgia, serif",
     fontWeight: 400,
-    fontSize: 'clamp(56px, 10vw, 80px)',
-    lineHeight: 0.98,
+    fontSize: "clamp(42px, 9vw, 80px)",
+    lineHeight: 1,
     margin: 0,
-    color: '#fff',
+    color: "#fff",
     opacity: 0,
-    transform: 'translateY(-30px)',
-    animation: '$titleIn 1200ms cubic-bezier(.16,.84,.26,1) forwards',
+    transform: "translateY(-30px)",
+
+    "@media (max-width: 900px)": {
+      fontSize: "clamp(36px, 10vw, 56px)",
+    },
   },
 
   intro: {
-    marginTop: theme?.spacing?.(5) ?? '32px',
+    marginTop: 28,
     maxWidth: 720,
-    fontSize: 'clamp(16px, 1.6vw, 20px)',
-    lineHeight: 1.6,
-    color: '#8d8981',
+    fontSize: "clamp(16px, 1.6vw, 20px)",
+    lineHeight: 1.7,
+    color: "#8d8981",
     opacity: 0,
-    transform: 'translateY(10px)',
-    animation: '$copyIn 1000ms ease-out forwards',
-    animationDelay: '160ms',
-    '@media (max-width: 900px)': { marginTop: '16px' },
+    transform: "translateY(12px)",
+
+    "@media (max-width: 900px)": {
+      marginTop: 18,
+      maxWidth: "100%",
+    },
   },
 
   underline: {
     width: 120,
     height: 2,
-    background: 'rgba(255,255,255,0.85)',
-    marginTop: theme?.spacing?.(4) ?? '28px',
+    background: "rgba(255,255,255,0.85)",
+    marginTop: 28,
     opacity: 0,
-    transform: 'scaleX(0)',
-    transformOrigin: 'left center',
-    animation: '$underline 900ms ease-out forwards',
-    animationDelay: '380ms',
+    transform: "scaleX(0)",
+    transformOrigin: "left center",
+
+    "@media (max-width: 900px)": {
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
   },
 
-  '@keyframes titleIn': {
-    '0%': { opacity: 0, transform: 'translateY(-30px)' },
-    '100%': { opacity: 1, transform: 'translateY(0)' },
-  },
-  '@keyframes copyIn': {
-    '0%': { opacity: 0, transform: 'translateY(12px)' },
-    '100%': { opacity: 1, transform: 'translateY(0)' },
-  },
-  '@keyframes underline': {
-    '0%': { opacity: 0, transform: 'scaleX(0)' },
-    '100%': { opacity: 1, transform: 'scaleX(1)' },
-  },
+  /* RIGHT CTA */
   right: {
-  flex: 1,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
 
-  "@media (max-width: 900px)": {
-    marginTop: 40,
-  },
-},
-
-cvBtn: {
-  padding: "16px 42px",
-  borderRadius: 999,
-  fontSize: 18,
-  fontWeight: 600,
-  color: "#fff",
-  background: "linear-gradient(135deg, #8c6b4a, #b08a63)",
-  border: "none",
-  cursor: "pointer",
-  textDecoration: "none",
-
-  boxShadow: "0 12px 30px rgba(176,138,99,0.35)",
-  transform: "translateY(0)",
-  transition: "all 0.35s cubic-bezier(.22,.61,.36,1)",
-
-  "&:hover": {
-    transform: "translateY(-6px)",
-    boxShadow: "0 22px 44px rgba(176,138,99,0.5)",
+    "@media (max-width: 900px)": {
+      marginTop: 12,
+    },
   },
 
-  "&:active": {
-    transform: "translateY(-2px) scale(0.98)",
-  },
-},
+  cvBtn: {
+    padding: "16px 44px",
+    borderRadius: 999,
+    fontSize: 18,
+    fontWeight: 600,
+    color: "#fff",
+    background: "linear-gradient(135deg, #8c6b4a, #b08a63)",
+    border: "none",
+    cursor: "pointer",
+    textDecoration: "none",
 
-}));
+    boxShadow: "0 12px 30px rgba(176,138,99,0.35)",
+    transform: "translateY(0)",
+    transition: "all 0.35s cubic-bezier(.22,.61,.36,1)",
+
+    "&:hover": {
+      transform: "translateY(-6px)",
+      boxShadow: "0 22px 44px rgba(176,138,99,0.5)",
+    },
+
+    "&:active": {
+      transform: "translateY(-2px) scale(0.98)",
+    },
+
+    "@media (max-width: 900px)": {
+      fontSize: 16,
+      padding: "14px 36px",
+    },
+  },
+
+  /* ANIMATIONS */
+  "@keyframes titleIn": {
+    "0%": { opacity: 0, transform: "translateY(-30px)" },
+    "100%": { opacity: 1, transform: "translateY(0)" },
+  },
+
+  "@keyframes copyIn": {
+    "0%": { opacity: 0, transform: "translateY(12px)" },
+    "100%": { opacity: 1, transform: "translateY(0)" },
+  },
+
+  "@keyframes underlineIn": {
+    "0%": { opacity: 0, transform: "scaleX(0)" },
+    "100%": { opacity: 1, transform: "scaleX(1)" },
+  },
+
+  /* VISIBILITY CLASSES */
+  titleVisible: {
+    animation: "$titleIn 1.2s cubic-bezier(.16,.84,.26,1) forwards",
+  },
+
+  introVisible: {
+    animation: "$copyIn 1s ease-out 0.16s forwards",
+  },
+
+  underlineVisible: {
+    animation: "$underlineIn 0.9s ease-out 0.38s forwards",
+  },
+});
 
 export default useStyles;

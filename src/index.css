@@ -14,21 +14,33 @@ html, body {
 }
 
 /* Enable snap ONLY on home page */
-body.snap-enabled {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+/* Desktop only */
+@media (min-width: 901px) {
+  body.snap-enabled {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }
 
-/* Each section = one full page */
-.snap-section {
-  height: 100vh;
-  width: 100%;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+/* Mobile: normal scrolling */
+@media (max-width: 900px) {
+  body.snap-enabled {
+    scroll-snap-type: none;
+    height: auto;
+  }
 
-  display: flex;
-  background: #000;          /* ⬅ ensure full black */
+  .snap-section {
+    height: auto;
+    scroll-snap-align: none;
+    padding-bottom: 64px;
+  }
 }
 
 

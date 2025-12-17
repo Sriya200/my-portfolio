@@ -1,4 +1,3 @@
-// src/pages/Contact.jsx
 import React, { useEffect, useRef, useState } from "react";
 import useStyles from "../components/Contact/contact.style";
 import { IconInstagram, IconLinkedIn, IconGitHub } from "./Icons";
@@ -17,6 +16,7 @@ export default function Contact() {
   const panelRef = useRef(null);
   const btnRef = useRef(null);
 
+  /* Intersection animations */
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -29,7 +29,7 @@ export default function Contact() {
             setSocialIn(entry.isIntersecting);
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.25 }
     );
 
     headerRef.current && obs.observe(headerRef.current);
@@ -39,6 +39,7 @@ export default function Contact() {
     return () => obs.disconnect();
   }, []);
 
+  /* Close action panel on outside click */
   useEffect(() => {
     const handler = (e) => {
       if (
@@ -71,11 +72,12 @@ export default function Contact() {
               <button
                 ref={btnRef}
                 className={s.sendBtn}
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen((v) => !v)}
               >
                 {open ? "Close" : "Send Message"}
               </button>
 
+              {/* ACTION PANEL */}
               <div
                 ref={panelRef}
                 className={`${s.actionsPanel} ${
@@ -88,7 +90,9 @@ export default function Contact() {
                 >
                   Open Email
                 </a>
+
                 <button
+                  type="button"
                   className={s.actionGhost}
                   onClick={() => setOpen(false)}
                 >
@@ -101,38 +105,56 @@ export default function Contact() {
 
         {/* RIGHT */}
         <aside ref={rightRef} className={s.right}>
-          <div className={`${s.card} ${rightIn ? s.cardIn : ""}`}>
-            <div className={s.cardTitle}>Address</div>
-            <div className={s.cardText}>Bangalore, Karnataka</div>
-          </div>
-
-          <div className={`${s.card} ${rightIn ? s.cardIn : ""}`}>
-            <div className={s.cardTitle}>Email</div>
-            <div className={s.cardText}>
-              chakrabortysriyanka1@gmail.com
+          {[
+            { label: "Address", value: "Bangalore, Karnataka" },
+            { label: "Email", value: "chakrabortysriyanka1@gmail.com" },
+            { label: "Phone", value: "+91-6295221974" },
+          ].map((item, i) => (
+            <div
+              key={item.label}
+              className={`${s.card} ${rightIn ? s.cardIn : ""}`}
+              style={{ transitionDelay: `${i * 120}ms` }}
+            >
+              <div className={s.cardTitle}>{item.label}</div>
+              <div className={s.cardText}>{item.value}</div>
             </div>
-          </div>
-
-          <div className={`${s.card} ${rightIn ? s.cardIn : ""}`}>
-            <div className={s.cardTitle}>Phone</div>
-            <div className={s.cardText}>+91-6295221974</div>
-          </div>
+          ))}
         </aside>
 
-        {/* ✅ SOCIALS — MUST BE INSIDE GRID */}
+        {/* SOCIALS */}
         <div
           ref={socialRef}
           className={`${s.socialsBottom} ${
             socialIn ? s.socialsBottomIn : ""
           }`}
         >
-          <a className={s.socialBtn} href="https://www.instagram.com/turtl_estudio/" target="_blank">
+          <a
+            className={s.socialBtn}
+            href="https://www.instagram.com/turtl_estudio/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
             <IconInstagram />
           </a>
-          <a className={s.socialBtn} href="https://www.linkedin.com/in/sriyanka-chakraborty-300572284/" target="_blank">
+
+          <a
+            className={s.socialBtn}
+            href="https://www.linkedin.com/in/sriyanka-chakraborty-300572284/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <IconLinkedIn />
           </a>
-          <a className={s.socialBtn} href="https://github.com/Sriya200" target="_blank">
+
+          <a
+            className={s.socialBtn}
+            href="https://github.com/Sriya200"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
             <IconGitHub />
           </a>
         </div>

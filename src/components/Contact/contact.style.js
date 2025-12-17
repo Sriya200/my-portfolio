@@ -1,190 +1,236 @@
-// src/components/Contact/contact.style.js
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
- contact: {
-  height: "100%",
-  width: "100%",
-  maxWidth: 1200,
-  margin: "0 auto",
-  boxSizing: "border-box",
+  contact: {
+    minHeight: "100vh",
+    width: "100%",
+    maxWidth: 1200,
+    margin: "0 auto",
+    boxSizing: "border-box",
 
-  background: "#000",
-  color: "#fff",
+    background: "#000",
+    color: "#fff",
 
-  display: "block",
-  overflow: "hidden",
-},
-
-inner: {
-  maxWidth: 1200,
-  margin: "0 auto",
-
-  paddingTop: "72px",
-  paddingBottom: "80px",
-
-  display: "grid",
-  gridTemplateColumns: "1fr 360px",
-  alignItems: "start",
-  gap: 32,
-
-  "@media (max-width: 768px)": {
-    gridTemplateColumns: "1fr",
-    gap: 24,
-    paddingTop: "64px",
-    paddingBottom: "72px",
+    display: "flex",
+    alignItems: "center",
+    overflow: "hidden",
   },
-},
 
-  left: { display: "flex", flexDirection: "column" },
+  inner: {
+    width: "100%",
+    padding: "64px 48px",
 
-  /** -------------------------
-   ** HEADER (BIG & ANIMATED)
-   ** ------------------------ */
+    display: "grid",
+    gridTemplateColumns: "1fr 360px",
+    alignItems: "center",
+    gap: 40,
+
+    "@media (max-width: 900px)": {
+      gridTemplateColumns: "1fr",
+      padding: "56px 20px",
+      gap: 28,
+    },
+  },
+
+  /* LEFT */
+  left: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
   header: {
     fontFamily: "'Playfair Display', Georgia, serif",
-    fontSize: "clamp(48px, 9vw, 80px)",
-    lineHeight: 0.95,
-    marginTop: 0,        // 👈 force start at top
-    marginBottom: "32px",
-    transform: "translateX(-60px)",
+    fontSize: "clamp(40px, 9vw, 80px)",
+    lineHeight: 1,
+    margin: 0,
+    marginBottom: 28,
+
     opacity: 0,
-    transition: "transform 800ms cubic-bezier(.16,.84,.26,1), opacity 600ms ease"
+    transform: "translateY(-20px)",
+    transition:
+      "opacity 700ms cubic-bezier(.16,.84,.26,1), transform 700ms cubic-bezier(.16,.84,.26,1)",
   },
 
   headerIn: {
-    transform: "translateX(0)",
-    opacity: 1
+    opacity: 1,
+    transform: "translateY(0)",
   },
 
-  /** -------------------------
-   ** CTA / SEND MESSAGE
-   ** ------------------------ */
   ctaWrap: {
-    marginTop: 20,
     display: "flex",
-    flexDirection: "column",
-    gap: 16
+    marginTop: 12,
   },
 
-  btnWrap: { position: "relative", display: "inline-block" },
+  btnWrap: {
+    position: "relative",
+    width: "fit-content",
+  },
 
   sendBtn: {
-    padding: "14px 38px",
+    padding: "14px 36px",
     borderRadius: 999,
     background: "#8c6b4a",
     border: "none",
     color: "#fff",
-    fontSize: 17,
-    fontWeight: 700,
+    fontSize: 16,
+    fontWeight: 600,
     cursor: "pointer",
-    transition: "0.25s ease",
+    transition: "all 0.25s ease",
+
     "&:hover": {
       transform: "translateY(-4px)",
-      boxShadow: "0 16px 34px rgba(0,0,0,0.45)"
-    }
+      boxShadow: "0 14px 30px rgba(140,107,74,0.45)",
+    },
   },
 
+  /* ACTION PANEL */
   actionsPanel: {
     position: "absolute",
-    top: "calc(100% + 12px)",
+    top: "calc(100% + 14px)",
     left: 0,
+
     width: 260,
-    background: "rgba(255,255,255,0.04)",
-    border: "1px solid rgba(255,255,255,0.08)",
-    padding: 14,
-    borderRadius: 12,
-    transform: "translateY(-8px)",
+    padding: 16,
+
+    background: "rgba(20,20,20,0.95)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: 14,
+
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+
+    transform: "translateY(-6px)",
     opacity: 0,
     pointerEvents: "none",
-    transition: "0.25s ease"
+
+    boxShadow: "0 18px 40px rgba(0,0,0,0.6)",
+    transition: "all 0.25s ease",
+
+    /* ✅ CRITICAL MOBILE FIX (NO OVERLAP) */
+    "@media (max-width: 900px)": {
+      position: "relative",
+      top: "auto",
+      left: "auto",
+      width: "100%",
+      marginTop: 14,
+      boxShadow: "none",
+    },
   },
 
   actionsOpen: {
     transform: "translateY(0)",
     opacity: 1,
-    pointerEvents: "auto"
+    pointerEvents: "auto",
   },
 
   actionLink: {
-    background: "rgba(255,255,255,0.05)",
-    padding: "10px 12px",
+    textAlign: "center",
+    padding: "10px 14px",
     borderRadius: 10,
-    color: "#ccefff",
-    textDecoration: "none",
+    background: "rgba(255,255,255,0.08)",
+    color: "#fff",
     fontWeight: 600,
-    "&:hover": { background: "rgba(255,255,255,0.1)" }
+    textDecoration: "none",
+
+    "&:hover": {
+      background: "rgba(255,255,255,0.16)",
+    },
   },
 
   actionGhost: {
+    padding: "8px 14px",
+    borderRadius: 10,
     background: "transparent",
-    border: "none",
+    border: "1px solid rgba(255,255,255,0.2)",
     color: "#ccc",
-    marginTop: 6,
     cursor: "pointer",
-    textDecoration: "underline"
+
+    "&:hover": {
+      background: "rgba(255,255,255,0.08)",
+      color: "#fff",
+    },
   },
 
-  /** -------------------------
-   ** RIGHT CARDS (ANIMATED)
-   ** ------------------------ */
+  /* RIGHT INFO */
   right: {
-  display: "flex",
-  flexDirection: "column",
-  gap: 16,
-},
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+  },
 
-card: {
-  background: "rgba(255,255,255,0.02)",
-  padding: 16,
-  borderRadius: 12,
-  border: "1px solid rgba(255,255,255,0.03)",
-  opacity: 0,
-  transform: "translateY(20px)",
-  transition: "opacity 0.6s ease, transform 0.6s ease",
-},
+  card: {
+    background: "rgba(255,255,255,0.03)",
+    padding: 16,
+    borderRadius: 14,
+    border: "1px solid rgba(255,255,255,0.05)",
 
-cardIn: {
-  opacity: 1,
-  transform: "translateY(0)",
-},
+    opacity: 0,
+    transform: "translateY(14px)",
+    transition:
+      "opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1)",
+  },
+
+  cardIn: {
+    opacity: 1,
+    transform: "translateY(0)",
+  },
+
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: 600,
+    marginBottom: 4,
+  },
 
   cardText: {
     fontSize: 14,
-    opacity: 0.85
+    opacity: 0.85,
+    lineHeight: 1.5,
   },
 
-  /** -------------------------
-   ** SOCIAL ICONS (BOTTOM)
-   ** ------------------------ */
-socialsBottom: {
-  gridColumn: "1 / -1",   // ⬅ THIS IS THE KEY
-  marginTop: "48px",
-  display: "flex",
-  justifyContent: "center",
-  gap: "16px",
-},
+  /* SOCIALS */
+  socialsBottom: {
+    gridColumn: "1 / -1",
+    marginTop: 40,
+
+    display: "flex",
+    justifyContent: "center",
+    gap: 16,
+
+    opacity: 0,
+    transform: "translateY(12px)",
+    transition:
+      "opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1)",
+  },
 
   socialsBottomIn: {
     opacity: 1,
-    transform: "translateY(0)"
+    transform: "translateY(0)",
   },
 
   socialBtn: {
-    width: 48,
-    height: 48,
+    width: 44,
+    height: 44,
     borderRadius: 12,
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
+
     background: "rgba(255,255,255,0.08)",
-    color: "#fff",
     border: "1px solid rgba(255,255,255,0.15)",
-    transition: "0.25s ease",
+    color: "#fff",
+    transition: "all 0.25s ease",
+
     "&:hover": {
       transform: "translateY(-4px)",
-      background: "rgba(255,255,255,0.18)"
-    }
+      background: "rgba(255,255,255,0.18)",
+    },
+  },
+
+  "@media (prefers-reduced-motion: reduce)": {
+    header: { opacity: 1, transform: "none" },
+    card: { opacity: 1, transform: "none" },
+    socialsBottom: { opacity: 1, transform: "none" },
   },
 });
 
