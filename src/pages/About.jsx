@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import useStyles from "../components/About/about.style";
 
 // Vite-safe resume import
-const resume = new URL("../assets/resume.pdf", import.meta.url).href;
 
 export default function About() {
   const s = useStyles();
@@ -83,13 +82,14 @@ export default function About() {
       {/* RIGHT SIDE CTA */}
       <div className={s.right} data-anim="cta">
         <a
-          href={resume}
-          target="_blank"
-          rel="noreferrer"
-          className={s.cvBtn}
-        >
-          Check out CV
-        </a>
+  href="/resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={s.cvBtn}
+>
+  Check out CV
+</a>
+
       </div>
     </section>
   );
