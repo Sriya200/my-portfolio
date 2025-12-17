@@ -23,7 +23,6 @@ export default function Education() {
   const experienceItems = [
     "Data Analyst, Pinspire, 2025",
     "Intern, Salesforce, 2023",
-    "Junior Creative at the NXTR Design Studio, 2020–21",
   ];
 
   useEffect(() => {
