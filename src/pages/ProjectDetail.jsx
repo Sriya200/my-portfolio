@@ -81,6 +81,7 @@ export default function ProjectDetail() {
     navigate("/", { replace: true });
     setTimeout(() => {
       const el = document.getElementById("projects");
+      
       el?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
   }}
