@@ -48,7 +48,7 @@ export default function About() {
 
       <div className={s.right}>
         <a
-          href="/public/resume copy.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className={s.cvBtn}
