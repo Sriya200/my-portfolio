@@ -22,9 +22,14 @@ export default function ProjectDetail() {
       maxWidth: 1100,
       margin: "0 auto",
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+      gridTemplateColumns: "1fr",
       gap: 24,
-      alignItems: "center",
+
+      // desktop layout
+      "@media (min-width: 900px)": {
+        gridTemplateColumns: "1fr 400px",
+        alignItems: "center",
+      },
     },
 
     title: {
@@ -50,18 +55,41 @@ export default function ProjectDetail() {
       textDecoration: "none",
     },
 
+    // MOBILE TOP LOGO
+    mobileLogo: {
+      display: "flex",
+      justifyContent: "center",
+      marginBottom: 10,
+
+      "@media (min-width: 900px)": {
+        display: "none",
+      },
+    },
+
+    // DESKTOP RIGHT LOGO
+    desktopLogo: {
+      display: "none",
+
+      "@media (min-width: 900px)": {
+        display: "flex",
+        justifyContent: "center",
+      },
+    },
+
     logoWrap: {
-      width: "100%",
-      maxWidth: 280,
-      height: 280,
+      width: 140,
+      height: 140,
       borderRadius: "999px",
       background: "#fff",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      overflow: "hidden",
-      margin: "30px auto 0",
       boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+
+      "@media (min-width: 900px)": {
+        width: 260,
+        height: 260,
+      },
     },
 
     logoImg: {
@@ -86,9 +114,6 @@ export default function ProjectDetail() {
       <main style={styles.page}>
         <section style={{ maxWidth: 900, margin: "120px auto", textAlign: "center" }}>
           <h2>Project not found</h2>
-          <p style={{ color: "rgba(255,255,255,0.7)" }}>
-            We couldn't find a project with id “{id}”.
-          </p>
           <button style={styles.backBtn} onClick={() => navigate(-1)}>
             ← Back
           </button>
@@ -100,8 +125,15 @@ export default function ProjectDetail() {
   return (
     <main style={styles.page}>
       <section style={styles.container}>
-        
-        {/* LEFT */}
+
+        {/* MOBILE LOGO */}
+        <div style={styles.mobileLogo}>
+          <div style={styles.logoWrap}>
+            <img src={project.imgPath || project.img} alt={project.title} style={styles.logoImg} />
+          </div>
+        </div>
+
+        {/* LEFT CONTENT */}
         <div>
           <h1 style={styles.title}>{project.title}</h1>
 
@@ -149,16 +181,13 @@ export default function ProjectDetail() {
           </button>
         </div>
 
-        {/* RIGHT */}
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        {/* DESKTOP LOGO */}
+        <div style={styles.desktopLogo}>
           <div style={styles.logoWrap}>
-            <img
-              src={project.imgPath || project.img}
-              alt={project.title}
-              style={styles.logoImg}
-            />
+            <img src={project.imgPath || project.img} alt={project.title} style={styles.logoImg} />
           </div>
         </div>
+
       </section>
     </main>
   );

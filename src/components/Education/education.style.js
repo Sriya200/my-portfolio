@@ -41,18 +41,23 @@ const useStyles = createUseStyles({
     },
   },
 
-  title: {
-    fontFamily: "'Playfair Display', Georgia, serif",
-    fontWeight: 300,
-    fontSize: "clamp(42px, 9vw, 80px)",
-    lineHeight: 1.05,
-    margin: 0,
-    color: "#fff",
+  tile: {
+  opacity: 0,
+  transform: "translateY(14px)",
+  transition: "all 0.4s ease",
+  borderRadius: 14,
+  padding: 16,
+  background: "rgba(255,255,255,0.02)",
 
-    "@media (max-width: 900px)": {
-      textAlign: "center",
-    },
+  "@media (max-width: 700px)": {
+    padding: 14,
   },
+
+  "&:hover": {
+    transform: "translateY(-6px)",
+    boxShadow: "0 18px 42px rgba(0,0,0,0.55)",
+  },
+},
 
   /* RIGHT CONTENT */
   right: {
